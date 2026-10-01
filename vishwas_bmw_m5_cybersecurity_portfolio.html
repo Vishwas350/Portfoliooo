@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vishwas S — Cybersecurity Portfolio</title>
+<meta name="description" content="Vishwas S — Cybersecurity Portfolio">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#050607; --panel:#0a0d10; --panel2:#0f1317;
+  --white:#f4f5f6; --muted:#8c939b; --red:#e31b23;
+  --blue:#1685ff; --cyan:#00c8ff; --line:rgba(255,255,255,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:Inter,sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+::selection{background:var(--red);color:white}
+
+/* LOADING RACE */
+.intro{position:fixed;inset:0;background:#030405;z-index:999;overflow:hidden;transition:1s}
+.intro.hide{opacity:0;visibility:hidden}
+.intro::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 50%,rgba(227,27,35,.1),transparent 32%);
+}
+.grid{
+  position:absolute;left:-10%;right:-10%;bottom:-8%;height:60%;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:65px 65px;
+  transform:perspective(400px) rotateX(60deg);
+  transform-origin:center bottom;
+}
+.intro-top{
+  position:absolute;top:12%;width:100%;text-align:center;
+  font:600 10px Orbitron;letter-spacing:6px;color:#676d75
+}
+.track{
+  position:absolute;left:-10%;right:-10%;bottom:22%;height:130px;
+  transform:skewY(-3deg);
+  background:linear-gradient(#171a1d,#070809);
+  border-top:1px solid #393d42;border-bottom:1px solid #272a2d;
+}
+.track:after{
+  content:"";position:absolute;left:0;right:0;top:51%;height:4px;
+  background:repeating-linear-gradient(90deg,#eee 0 65px,transparent 65px 125px);
+  animation:dash .45s linear infinite;
+}
+@keyframes dash{to{background-position:-125px 0}}
+.intro-label{
+  position:absolute;top:18%;left:6%;font:700 9px Orbitron;color:#555;letter-spacing:3px
+}
+.intro-label.right{left:auto;right:6%}
+.car{
+  position:absolute;left:-410px;bottom:27%;width:380px;height:145px;
+  animation:carRun 3.8s cubic-bezier(.15,.75,.15,1) forwards;
+  filter:drop-shadow(0 25px 18px rgba(0,0,0,.85));
+}
+@keyframes carRun{
+  0%{left:-430px;transform:scale(.72)}
+  68%{left:calc(100% - 140px);transform:scale(1)}
+  100%{left:calc(100% + 430px);transform:scale(1.05)}
+}
+/* BMW M5 inspired silhouette */
+.car .body{
+  position:absolute;left:35px;top:57px;width:295px;height:58px;
+  background:linear-gradient(160deg,#f5f7f8 0%,#aeb5bb 35%,#383d42 72%,#111315 100%);
+  border-radius:25px 72px 18px 12px;
+  clip-path:polygon(2% 48%,9% 28%,28% 18%,39% 0,70% 4%,82% 20%,94% 29%,100% 55%,96% 88%,75% 93%,67% 100%,25% 100%,19% 87%,4% 83%);
+}
+.car .hood{
+  position:absolute;left:30px;top:58px;width:105px;height:38px;
+  background:linear-gradient(165deg,#eef1f3,#767c82);
+  clip-path:polygon(0 45%,70% 0,100% 22%,100% 85%,0 100%);
+}
+.car .roof{
+  position:absolute;left:128px;top:32px;width:135px;height:52px;
+  background:linear-gradient(145deg,#2e3338,#07090b);
+  clip-path:polygon(14% 100%,27% 5%,68% 0,100% 100%);
+  border-top:1px solid #aaa;
+}
+.car .glass{
+  position:absolute;left:151px;top:38px;width:98px;height:35px;
+  background:linear-gradient(130deg,#b9e4f1,#15222b 48%,#030506);
+  clip-path:polygon(11% 100%,21% 5%,55% 2%,95% 100%);
+}
+.car .kidney{
+  position:absolute;left:54px;top:76px;width:48px;height:28px;
+  display:flex;gap:4px;transform:skewY(-7deg);
+}
+.car .kidney span{
+  width:19px;border:3px solid #090a0b;border-radius:45% 45% 48% 48%;
+  background:#020304;
+}
+.car .lamp{
+  position:absolute;left:98px;top:73px;width:43px;height:13px;
+  background:linear-gradient(90deg,#d9f6ff,#fff);
+  border-radius:3px 14px 4px 3px;
+  box-shadow:0 0 18px #bdefff;
+}
+.car .rear{
+  position:absolute;right:42px;top:77px;width:28px;height:12px;background:#d90008;
+  border-radius:3px;box-shadow:0 0 15px rgba(255,0,0,.7)
+}
+.wheel{
+  position:absolute;bottom:5px;width:63px;height:63px;border-radius:50%;
+  background:#050607;border:7px solid #151719;box-shadow:inset 0 0 0 5px #363a3e
+}
+.wheel:after{content:"";position:absolute;inset:13px;border-radius:50%;background:#858b91}
+.w1{left:76px}.w2{right:58px}
+.speed{
+  position:absolute;right:20%;bottom:42%;width:300px;height:75px;
+  background:repeating-linear-gradient(0deg,transparent 0 12px,rgba(255,255,255,.35) 13px 14px);
+  transform:skewX(-25deg);animation:speed .3s linear infinite;opacity:.5
+}
+@keyframes speed{to{transform:translateX(-80px) skewX(-25deg)}}
+.intro-name{
+  position:absolute;inset:0;display:grid;place-items:center;text-align:center;
+  opacity:0;animation:appear 1s 3.25s forwards
+}
+.intro-name h1{
+  font:900 clamp(55px,11vw,145px) Barlow Condensed;
+  letter-spacing:10px;text-transform:uppercase;
+}
+.intro-name h1 span{color:transparent;-webkit-text-stroke:1px #777}
+.intro-name p{font:600 10px Orbitron;letter-spacing:7px;color:#777;margin-top:12px}
+@keyframes appear{to{opacity:1}}
+
+/* MAIN */
+main{opacity:0;animation:mainIn .9s 3.8s forwards}
+@keyframes mainIn{to{opacity:1}}
+nav{
+  position:fixed;top:0;left:0;right:0;height:76px;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;padding:0 6%;
+  background:linear-gradient(#050607e8,transparent);backdrop-filter:blur(10px)
+}
+.logo{font:800 22px Barlow Condensed;letter-spacing:3px}.logo i{color:var(--red);font-style:normal}
+.links{display:flex;gap:32px;font:600 10px Orbitron;color:#888;letter-spacing:1px}
+.links a{transition:.2s}.links a:hover{color:#fff}
+.nav-btn{font:700 9px Orbitron;border:1px solid #333;padding:11px 15px}
+.hero{
+  min-height:100vh;position:relative;display:flex;align-items:center;
+  padding:130px 7% 80px;overflow:hidden;
+  background:
+    radial-gradient(circle at 75% 45%,rgba(227,27,35,.12),transparent 25%),
+    linear-gradient(115deg,#050607 0%,#07090b 55%,#0a0d10 100%);
+}
+.hero:before{
+  content:"V";position:absolute;right:3%;top:15%;
+  font:900 55vw Barlow Condensed;line-height:.7;color:rgba(255,255,255,.018)
+}
+.hero-content{position:relative;z-index:2;max-width:950px}
+.eyebrow{font:700 10px Orbitron;color:var(--red);letter-spacing:4px;margin-bottom:18px}
+.hero h2{
+  font:900 clamp(65px,10vw,150px) Barlow Condensed;
+  line-height:.78;letter-spacing:-2px;text-transform:uppercase
+}
+.hero h2 .outline{color:transparent;-webkit-text-stroke:1px #777}
+.hero h2 .red{color:var(--red)}
+.hero-text{max-width:580px;margin-top:35px;color:#9298a0;font-size:15px;line-height:1.8}
+.actions{display:flex;gap:10px;margin-top:30px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:14px 20px;
+  font:700 10px Orbitron;letter-spacing:1px;border:1px solid #30343a;transition:.25s
+}
+.btn:hover{transform:translateY(-3px);border-color:#777}
+.btn.red{background:var(--red);border-color:var(--red)}
+.hero-meta{
+  position:absolute;right:7%;bottom:9%;z-index:3;
+  display:grid;grid-template-columns:repeat(3,100px);gap:1px
+}
+.meta{border-left:1px solid #333;padding-left:15px}
+.meta b{font:700 20px Orbitron}.meta small{display:block;color:#666;font-size:8px;margin-top:6px;letter-spacing:1px}
+
+section{padding:120px 7%;position:relative}
+.section-top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:50px}
+.section-number{font:700 10px Orbitron;color:#555;letter-spacing:3px;margin-bottom:12px}
+h3{font:900 clamp(45px,6vw,82px) Barlow Condensed;line-height:.85;text-transform:uppercase;letter-spacing:-1px}
+.section-copy{max-width:480px;color:#838a92;line-height:1.8;font-size:13px}
+
+.about{background:#07090b}
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.card{
+  background:linear-gradient(135deg,#0d1115,#080a0c);
+  border:1px solid var(--line);padding:35px;min-height:250px
+}
+.card p{color:#969ca4;font-size:14px;line-height:1.9}
+.info-row{display:grid;grid-template-columns:repeat(3,1fr);margin-top:30px}
+.info{border-left:1px solid #34383c;padding:0 15px}
+.info b{font:700 25px Orbitron}.info span{display:block;color:#666;font-size:9px;margin-top:7px}
+.education{display:flex;flex-direction:column;justify-content:space-between}
+.education .label{font:700 9px Orbitron;color:var(--red);letter-spacing:3px}
+.education h4{font:700 24px Barlow Condensed;text-transform:uppercase;margin:15px 0 5px}
+.education p{font-size:11px;line-height:1.7}
+
+.projects{background:#050607}
+.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.project{
+  min-height:340px;padding:30px;border:1px solid var(--line);
+  background:linear-gradient(145deg,#11161b,#080a0c);
+  display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;overflow:hidden
+}
+.project:after{
+  content:"";position:absolute;right:-60px;bottom:-80px;width:220px;height:220px;
+  border-radius:50%;border:1px solid rgba(255,255,255,.05);box-shadow:0 0 0 30px rgba(255,255,255,.015),0 0 0 60px rgba(255,255,255,.01)
+}
+.pnum{font:700 10px Orbitron;color:#555}
+.project h4{font:800 34px Barlow Condensed;line-height:.95;text-transform:uppercase;max-width:600px}
+.project p{color:#858c94;font-size:12px;line-height:1.8;max-width:600px;margin-top:15px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;position:relative;z-index:2}
+.tag{padding:7px 9px;border:1px solid #292e33;color:#888;font:600 8px Orbitron}
+
+.skills{background:#090c0f}
+.skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.skill{
+  min-height:175px;padding:22px;border:1px solid var(--line);background:#07090b;
+  transition:.3s;position:relative;overflow:hidden
+}
+.skill:hover{transform:translateY(-5px);border-color:#454a50}
+.skill .num{font:700 9px Orbitron;color:var(--red)}
+.skill h4{font:800 24px Barlow Condensed;text-transform:uppercase;margin:25px 0 8px}
+.skill p{font-size:10px;color:#777;line-height:1.7}
+.tool-cloud{margin-top:28px;display:flex;flex-wrap:wrap;gap:7px}
+.tool{font:600 8px Orbitron;color:#777;border:1px solid #25292e;padding:10px 12px}
+
+.cert{
+  background:
+    linear-gradient(90deg,rgba(227,27,35,.05),transparent 40%),
+    #050607
+}
+.cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.cert-item{border:1px solid var(--line);padding:25px;display:flex;justify-content:space-between;gap:20px}
+.cert-item strong{font:800 24px Barlow Condensed;text-transform:uppercase}
+.cert-item span{font-size:10px;color:#777;text-align:right}
+
+.contact{
+  min-height:80vh;display:grid;place-items:center;text-align:center;
+  background:radial-gradient(circle at center,rgba(227,27,35,.12),transparent 35%),#050607
+}
+.contact h3{font-size:clamp(65px,10vw,145px)}
+.contact p{max-width:560px;color:#818890;font-size:13px;line-height:1.8;margin:25px auto 30px}
+.contact-links{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+
+footer{
+  border-top:1px solid var(--line);padding:25px 7%;
+  display:flex;justify-content:space-between;color:#555;font:600 8px Orbitron;letter-spacing:2px
+}
+
+@media(max-width:850px){
+  .links,.nav-btn{display:none}
+  .hero-meta{display:none}
+  .about-grid,.project-grid,.cert-grid{grid-template-columns:1fr}
+  .skill-grid{grid-template-columns:repeat(2,1fr)}
+  .section-top{display:block}.section-copy{margin-top:18px}
+}
+@media(max-width:520px){
+  section{padding:85px 6%}
+  .skill-grid{grid-template-columns:1fr}
+  .info-row{grid-template-columns:1fr;gap:15px}
+  .hero h2{font-size:68px}
+  .intro-name h1{letter-spacing:4px}
+  .car{transform:scale(.65)}
+}
+</style>
+</head>
+
+<body>
+<div class="intro" id="intro">
+  <div class="grid"></div>
+  <div class="intro-top">VISHWAS PERFORMANCE SYSTEM // INITIALIZING</div>
+  <div class="intro-label">M5 / 01</div>
+  <div class="intro-label right">CYBER / 2026</div>
+  <div class="track"></div><div class="speed"></div>
+  <div class="car" aria-label="BMW M5 inspired racing car">
+    <div class="body"></div><div class="hood"></div><div class="roof"></div>
+    <div class="glass"></div><div class="kidney"><span></span><span></span></div>
+    <div class="lamp"></div><div class="rear"></div>
+    <div class="wheel w1"></div><div class="wheel w2"></div>
+  </div>
+  <div class="intro-name">
+    <div><h1>VISHWAS <span>S</span></h1><p>CYBERSECURITY / DIGITAL PORTFOLIO</p></div>
+  </div>
+</div>
+
+<main>
+<nav>
+  <a href="#home" class="logo">VISHWAS<span>.</span></a>
+  <div class="links">
+    <a href="#about">PROFILE</a><a href="#projects">PROJECTS</a><a href="#skills">SKILLS</a><a href="#contact">CONTACT</a>
+  </div>
+  <a class="nav-btn" href="mailto:vishwasb.v.s.c@gmail.com">LET'S TALK ↗</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">01 / CYBERSECURITY PORTFOLIO</div>
+    <h2>THINK<br><span class="outline">LIKE A</span><br><span class="red">DEFENDER.</span></h2>
+    <p class="hero-text">B.E. Computer Science and Engineering graduate with a strong interest in networking, cybersecurity, security tools, vulnerability assessment and digital security operations.</p>
+    <div class="actions">
+      <a class="btn red" href="#projects">EXPLORE WORK ↓</a>
+      <a class="btn" href="https://github.com/vishwas350" target="_blank">GITHUB ↗</a>
+      <a class="btn" href="https://linkedin.com/in/vishwassridhar" target="_blank">LINKEDIN ↗</a>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <div class="meta"><b>7.4</b><small>CGPA</small></div>
+    <div class="meta"><b>2026</b><small>GRADUATE</small></div>
+    <div class="meta"><b>AZ-900</b><small>CERTIFIED</small></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-top">
+    <div><div class="section-number">02 / PROFILE</div><h3>Built to<br>learn fast.</h3></div>
+    <p class="section-copy">A practical cybersecurity foundation developed through training, security labs, networking concepts and hands-on security tooling.</p>
+  </div>
+  <div class="about-grid">
+    <div class="card">
+      <p>I'm Vishwas S, a 2026 B.E. Computer Science and Engineering graduate. I am building my career around cybersecurity, with a particular focus on network security, vulnerability assessment, traffic analysis, Linux security and security monitoring concepts.</p>
+      <div class="info-row">
+        <div class="info"><b>7.4</b><span>CGPA</span></div>
+        <div class="info"><b>2026</b><span>PASS OUT</span></div>
+        <div class="info"><b>TN</b><span>INDIA</span></div>
+      </div>
+    </div>
+    <div class="card education">
+      <div>
+        <div class="label">EDUCATION</div>
+        <h4>B.E. Computer Science & Engineering</h4>
+        <p>K. Ramakrishnan College of Technology<br>2026 · CGPA 7.4</p>
+      </div>
+      <div>
+        <div class="label">CURRENT TRAINING</div>
+        <p>Cybersecurity Course — Besant Technologies · Ongoing</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <div class="section-top">
+    <div><div class="section-number">03 / PROJECTS</div><h3>Selected<br>work.</h3></div>
+    <p class="section-copy">Two academic projects demonstrating AI, deep learning, explainability, NLP and practical software development.</p>
+  </div>
+  <div class="project-grid">
+    <article class="project">
+      <span class="pnum">PROJECT / 01</span>
+      <div>
+        <h4>Explainable Ensemble Deep Learning for Gastrointestinal Disease Detection</h4>
+        <p>Built an ensemble deep learning system to detect gastrointestinal diseases from endoscopic images. Used Grad-CAM and LIME to visualize model decisions and improve interpretability.</p>
+      </div>
+      <div class="tags"><span class="tag">DEEP LEARNING</span><span class="tag">GRAD-CAM</span><span class="tag">LIME</span><span class="tag">COMPUTER VISION</span></div>
+    </article>
+    <article class="project">
+      <span class="pnum">PROJECT / 02</span>
+      <div>
+        <h4>Project Planner with AI</h4>
+        <p>Developed an intelligent project planning tool to support task scheduling, resource allocation and deadline estimation, with NLP for natural-language task creation.</p>
+      </div>
+      <div class="tags"><span class="tag">AI</span><span class="tag">NLP</span><span class="tag">AUTOMATION</span><span class="tag">PLANNING</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="skills" id="skills">
+  <div class="section-top">
+    <div><div class="section-number">04 / SECURITY STACK</div><h3>Tools of<br>the trade.</h3></div>
+    <p class="section-copy">A broad practical toolkit spanning reconnaissance, web security, vulnerability management, Linux, cloud, DevSecOps, mobile security and forensics.</p>
+  </div>
+  <div class="skill-grid">
+    <div class="skill"><div class="num">01 / RECON</div><h4>Recon</h4><p>Nmap, Wireshark and Netcat for discovery, traffic analysis and connectivity testing.</p></div>
+    <div class="skill"><div class="num">02 / WEB</div><h4>Web Security</h4><p>Burp Suite, Gobuster, Nikto, SQLMap and OWASP Juice Shop.</p></div>
+    <div class="skill"><div class="num">03 / PASSWORD</div><h4>Password</h4><p>Hydra and John the Ripper for authorized auditing and hash analysis.</p></div>
+    <div class="skill"><div class="num">04 / EXPLOIT</div><h4>Exploitation</h4><p>Metasploit Framework for authorized vulnerability validation.</p></div>
+    <div class="skill"><div class="num">05 / VULN</div><h4>Vulnerability</h4><p>OpenVAS / Greenbone for vulnerability assessment workflows.</p></div>
+    <div class="skill"><div class="num">06 / LINUX</div><h4>Linux</h4><p>UFW, Fail2Ban and journalctl for hardening and log analysis.</p></div>
+    <div class="skill"><div class="num">07 / SIEM</div><h4>SIEM</h4><p>Splunk and ELK Stack for log collection, search, dashboards and alerting concepts.</p></div>
+    <div class="skill"><div class="num">08 / CLOUD</div><h4>Cloud</h4><p>AWS IAM, Security Groups and Microsoft Azure Fundamentals.</p></div>
+    <div class="skill"><div class="num">09 / DEVSECOPS</div><h4>DevSecOps</h4><p>Git, GitHub Actions, Jenkins, SonarQube, Trivy and Docker.</p></div>
+    <div class="skill"><div class="num">10 / MOBILE</div><h4>Mobile</h4><p>MobSF and APKTool for mobile application security analysis.</p></div>
+    <div class="skill"><div class="num">11 / FORENSICS</div><h4>Forensics</h4><p>Autopsy and FTK Imager for investigation and evidence acquisition.</p></div>
+    <div class="skill"><div class="num">12 / REPORTING</div><h4>Reporting</h4><p>SysReptor concepts for structured security and penetration-testing reports.</p></div>
+  </div>
+  <div class="tool-cloud">
+    <span class="tool">TCP/IP</span><span class="tool">HTTP/HTTPS</span><span class="tool">DNS</span><span class="tool">VPN</span><span class="tool">FIREWALLS</span><span class="tool">LINUX</span><span class="tool">WINDOWS</span><span class="tool">AZURE</span>
+  </div>
+</section>
+
+<section class="cert">
+  <div class="section-top">
+    <div><div class="section-number">05 / CREDENTIALS</div><h3>Learning<br>continues.</h3></div>
+    <p class="section-copy">Certifications and ongoing training supporting a strong foundation in cloud and cybersecurity.</p>
+  </div>
+  <div class="cert-grid">
+    <div class="cert-item"><strong>Microsoft Azure Fundamentals</strong><span>AZ-900<br>CERTIFIED</span></div>
+    <div class="cert-item"><strong>Cybersecurity Course</strong><span>BESANT TECHNOLOGIES<br>ONGOING</span></div>
+    <div class="cert-item"><strong>German Language Course</strong><span>LET'S SPEAK<br>ONGOING</span></div>
+    <div class="cert-item"><strong>District-Level Handball</strong><span>ACHIEVEMENT<br>PARTICIPANT</span></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div>
+    <div class="eyebrow">06 / FINISH LINE</div>
+    <h3>LET'S<br>CONNECT.</h3>
+    <p>Interested in cybersecurity, networking and security technology. Open to opportunities where I can learn, contribute and grow with an experienced team.</p>
+    <div class="contact-links">
+      <a class="btn red" href="mailto:vishwasb.v.s.c@gmail.com">EMAIL ME ↗</a>
+      <a class="btn" href="https://linkedin.com/in/vishwassridhar" target="_blank">LINKEDIN ↗</a>
+      <a class="btn" href="https://github.com/vishwas350" target="_blank">GITHUB ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer><span>VISHWAS S / CYBERSECURITY</span><span>© 2026</span></footer>
+</main>
+
+<script>
+setTimeout(()=>document.getElementById('intro').classList.add('hide'),5100);
+</script>
+</body>
+</html>
